@@ -7,9 +7,13 @@ Resources to develop programming and software development skills
 
 ### Processing
 Github :
+
 Python Model for Processing : https://github.com/Mistrymm7/processing.py
+
 Generative Art (Good eg.) : https://github.com/aaronpenne/generative_art
+
 ShipboPattern : https://github.com/jaredstarbell/ShipiboPattern
+
 Generative Design Book (Imp.) : https://github.com/generative-design/Code-Package-Processing-3.x
 
 ### p5.js
@@ -22,9 +26,11 @@ Mapping and Visualization : https://github.com/Mistrymm7/mapping-and-visualizati
 
 ### Grasshopper
 CodeIt : https://github.com/Mistrymm7/ProToTypo
+
 Parametric Camp : https://github.com/ParametricCamp/TutorialFiles
 
 ### Other
 d3. js : https://github.com/Mistrymm7/d3
+
 angular.js : https://github.com/Mistrymm7/angular.js
 
