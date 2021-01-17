@@ -31,7 +31,7 @@ DC I/O : (Had some good ml in aec papers presentation)
 
 ReThink : ETH AI in AEC Symposium : (Got to know thoughts of aec ai leaders and the models they are working on)
 
-### AEC TECH by Thornton Tomasetti : (Acceleration learning through Hackthon (ML in GH Idea) and developed good network with AEC Technologists through this conference.
+### AEC TECH by Thornton Tomasetti : (Hackthon experience was next level (ML in GH Idea implementation) and developed good network with AEC Technologists through this conference.
 
 ACADIA : (Decent ml in aec papers + good workshop options. Boosted my creating coding confidence in Processing)
 
