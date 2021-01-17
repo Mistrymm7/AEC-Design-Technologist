@@ -18,7 +18,7 @@
 
 * **AI4AEC Symposium by Stanford** : (Tbh I wasnt impressed by ML solutions discussed in most of the sessions. A bit basic)
 
-* ### ***Social Algorithsm Workshop*** : 
+* ### ***Social Algorithms Workshop*** : 
 (Applied StyleGAN and CycleGAN. A big boost in confidence for ml deployment and learning. I wish the tutor explained model loss and training in a bit detail)
 
 ## September
