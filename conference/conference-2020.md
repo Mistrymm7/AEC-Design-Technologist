@@ -10,21 +10,21 @@
 
 * **Shell and Spatial Workshop** : (Good lectures)
 
-* ### **Digital Futures Conference : [Forever Grateful]** 
-(This conference changed my career trajectory. Got my first exposure of machine learning where I used style transfer in Runway. Heard Colab for the first time)
+* ### ***Digital Futures Conference : [Forever Grateful]*** 
+(This conference changed my career trajectory. Got first exposure of machine learning where I used style transfer in Runway. Heard Colab for the first time)
 
 ## August
 * **AIART: AI for ART Creation** (Got to see ml applications in other art field)
 
 * **AI4AEC Symposium by Stanford** : (Tbh I wasnt impressed by ML solutions discussed in most of the sessions. A bit basic)
 
-* ### **Social Algorithsm Workshop** : 
+* ### ***Social Algorithsm Workshop*** : 
 (Applied StyleGAN and CycleGAN. A big boost in confidence for ml deployment and learning. I wish the tutor explained model loss and training in a bit detail)
 
 ## September
 * **ICCV** : (Was just curious how core ML conference are. Everything went above my head)
 
-* ### **ECAADE : Cognitve Assemblages Workshop** (First exposure to Unity Reinforcement Learning and Wave Function Collapse. It was focused on deployment. I am unable to decode all the backend functionality)
+* ### ***ECAADE : Cognitve Assemblages Workshop*** (First exposure to Unity Reinforcement Learning and Wave Function Collapse. It was focused on deployment. I am unable to decode all the backend functionality)
 
 * **FDG : Foundation of Digital Games** (Attended because Theodore recommended and curious about Proceduaral Content Generation Papers)
 
@@ -33,7 +33,7 @@
 
 * **ReThink : ETH AI in AEC Symposium** : (Got to know thoughts of aec ai leaders and the models they are working on)
 
-* ### **AEC TECH by Thornton Tomasetti** : (Hackthon experience was next level (ML in GH Idea implementation) and developed good network with AEC Technologists through this conference.
+* ### ***AEC TECH by Thornton Tomasetti*** : (Hackthon experience was next level (ML in GH Idea implementation) and developed good network with AEC Technologists through this conference.
 
 * **ACADIA** : (Decent ml in aec papers + good workshop options. Boosted my creating coding confidence in Processing)
 
