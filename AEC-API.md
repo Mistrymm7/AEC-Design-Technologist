@@ -15,6 +15,7 @@ BIM 360 : https://forge.autodesk.com/en/docs/bim360/v1/overview/introduction/
 
 Rhino Developer : https://developer.rhino3d.com/api/
 
+### Hypar, Speckle, TestFit
 
 # Geospatial 
 
