@@ -2,6 +2,15 @@ Work in Progress AEC API Compilation
 
 # Geometry Space 
 
+## Geometry Libraries
+
+| Project | URL | Open Source | Supported Language(s) | License | 
+|---------|-----|-----|-----|-----|
+| Hypar Elements | https://github.com/hypar-io/elements | ✅ | C# | MIT License |
+| Geometry3Sharp | https://github.com/gradientspace/geometry3Sharp | ✅  | C# | BSL-1.0 License |
+| Verb NURBS | http://verbnurbs.com/ | ✅  | Cross-Platform: (JavaScript, C#, C++, Python, PHP) | MIT License | 
+
+
 ## Revit
 
 Forge Viewer: https://forge.autodesk.com/en/docs/viewer/v2/developers_guide/basics/
