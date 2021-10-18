@@ -58,6 +58,8 @@ Webpack :https://webpack.js.org/
 
 Babel : https://babeljs.io/
 
+Rollup : https://rollupjs.org/guide/en/
+
 Konva.js :https://konvajs.org/
 
 Snap svg :http://snapsvg.io/
