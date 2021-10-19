@@ -95,6 +95,16 @@ Runway, Teachable Machine, Lobe, Hugging Face, Gradio,
 
 # Structural Analysis
 
+Computer & Structures, Inc. (CSI): https://www.csiamerica.com/developer
+
+SkyCiv: https://skyciv.com/api/v3/docs/getting-started/
+
+SimScale: https://www.simscale.com/api-integration/
+
+Tekla Structures: https://developer.tekla.com/tekla-structures/documentation/get-started-tekla-structures-open-api
+
+Tekla Tedds: https://developer.tekla.com/tekla-tedds/tekla-tedds-api
+
 # Fabrication
 
 # Digital Twin 
