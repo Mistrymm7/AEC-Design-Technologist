@@ -6,3 +6,5 @@ Solidity Bascis: https://www.youtube.com/playlist?list=PLoqPVFip_3MfLX8uWxZHsDjm
 
 Scaffold-eth : https://github.com/scaffold-eth/scaffold-eth
 
+Tutorials Point: https://www.tutorialspoint.com/solidity/solidity_first_application.htm
+
