@@ -19,6 +19,10 @@ Basic Front End for Minting : https://www.youtube.com/watch?v=rcIOiGXPYno&ab_cha
 
 Adding NFT Attributes : https://www.youtube.com/watch?v=TnwHyqS1zrI&ab_channel=Web3Club
 
+NFT Metadata Endpoint : https://www.npoint.io/
+
+Sample Image URL: https://imgur.com/upload
+
 ### Generative SVG/NFT onchain vs offchain, Scaffold ETH
 
 -----------------
