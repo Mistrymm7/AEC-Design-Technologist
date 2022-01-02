@@ -1,0 +1,85 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mayur Decentralized Application</title>
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+</head>
+<body>
+    <h1>Mayur Decentralized Application Lets go</h1>
+    <div>
+        <p> Wallet address - <span id="walletaddress"></span></p>
+        <p> Current Count - <span id="count-tracker"> 0 </span>  </p>
+        <button id="increase-count"> Increase Count </button>
+    </div>
+    <script type="text/javascript">
+        // 1. Connect to Metamask and get User's address 
+        var account = null;
+        var contractexisting = null;
+        const ContactABI = [{"inputs":[],"name":"count","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"increment","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"nonpayable","type":"function"}];
+        const DeployedContractAddress = "0xf2F3EDB1fE423d160c58187BC35BAd4c11680006";
+
+        (async()=>{
+            if(window.ethereum){
+                await window.ethereum.send('eth_requestAccounts');
+                window.web3 = new Web3(window.ethereum);
+
+                var accounts = await web3.eth.getAccounts();
+                account = accounts[0];
+                document.getElementById('walletaddress').textContent = account;
+
+                // Connect to deployed contract
+                contractexisting = new web3.eth.Contract(ContactABI, DeployedContractAddress);
+
+                updatecount();
+                
+                document.getElementById('increase-count').onclick = ()=>{
+                    countincrease();
+                }
+
+                // Print Account
+                // console.log("Account is",account);
+            }
+        })();
+
+        // 2. Deploy the bytecode
+        const deploy = async (abi, bytecode)=>{
+            var deployingContract = new web3.eth.Contract(abi).deploy({
+                data: bytecode,
+                arguments:[]
+            });
+            var estimatedGas = await deployingContract.estimateGas();
+
+            var deployedContract = await deployingContract.send({
+                from: account,
+                gas: estimatedGas
+            });
+
+            console.log('Address of Contract' + deployedContract.options.address); 
+            return deployingContract.options.address;
+        }
+
+        
+        //3. Interact with the contract
+
+        const updatecount = async()=>{
+            if(contractexisting){
+                var count = await contractexisting.methods.count().call();
+                console.log("Value of count is " + count);
+                document.getElementById('count-tracker').textContent = count;
+            }
+
+        }
+
+        const countincrease = async()=>{
+            if(contractexisting){
+                var transcation = await contractexisting.methods.increment().send({from:account});
+                window.location.reload();
+            }
+        }
+
+    </script>
+</body>
+</html>
