@@ -29,4 +29,11 @@ Adding NFT Attributes : https://www.youtube.com/watch?v=TnwHyqS1zrI&ab_channel=W
 
 ------------------
 
+## Deploy smart contract to any Ethereum based chain using vanilla javascript
+
+Deployment (abi, bytecode)  : https://www.youtube.com/watch?v=d5YHnDZNCPU&ab_channel=Web3Club
+
+Interact : https://www.youtube.com/watch?v=mXDwD0Qx4II&t=118s&ab_channel=Web3Club
+
+
 
