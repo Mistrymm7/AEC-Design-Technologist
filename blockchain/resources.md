@@ -19,6 +19,8 @@ Basic Front End for Minting : https://www.youtube.com/watch?v=rcIOiGXPYno&ab_cha
 
 Adding NFT Attributes : https://www.youtube.com/watch?v=TnwHyqS1zrI&ab_channel=Web3Club
 
+NFT using IPFS Metadata : https://www.youtube.com/watch?v=R-wxVZcUfbw&list=PLvfQp12V0hS2M11mkQAwIT_UK-EJBug8V&index=1
+
 NFT Metadata Endpoint : https://www.npoint.io/
 
 Sample Image URL: https://imgur.com/upload
