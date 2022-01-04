@@ -25,6 +25,8 @@ Sample Image URL: https://imgur.com/upload
 
 ### Generative SVG/NFT onchain vs offchain, Scaffold ETH
 
+OnChain SVG: https://www.youtube.com/watch?v=UBGXFV1TQxc&list=PLvfQp12V0hS0ald2Y_cl4iYAekfFLMr3T
+
 -----------------
 ## ERC 1155
 
