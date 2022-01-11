@@ -7,13 +7,28 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "./10_Base64.sol";
 
-contract NFTonchainsvg is ERC721Enumerable, Ownable {
+contract NFTdynamicPW is ERC721Enumerable, Ownable {
   using Strings for uint256;
   string nameonart = "Architect";
   string color = "white";
 
+  struct minterinfo{
+      string name;
+      string color;
+  }
+
+  mapping (uint256 => minterinfo) public details;
+
   constructor() ERC721("ArchiDAO OnChain", "ADAO") {
     
+  }
+
+  // need to debug
+  function nftdatabase (uint256 num)public returns(string memory) {
+    require(num <= totalSupply());
+    minterinfo memory result = details[num];
+    return(result.name);
+
   }
 
   // public
@@ -24,7 +39,12 @@ contract NFTonchainsvg is ERC721Enumerable, Ownable {
     color = background_color;
   
     
+
     require(supply + 1 <= 10000);
+
+    // minterinfo memory holder = minterinfo (name_on_nft, background_color);
+    minterinfo memory holder = minterinfo (nameonart, color);
+    details[supply +1] = holder;
 
     if (msg.sender != owner()) {
       require(msg.value >= 0.005 ether );
