@@ -1,49 +1,79 @@
 # No Code Animation
 Animation > Add Keyframe
 
+# Collision 
+* Elevator/ Push (Grouping Objects)
+* Show Group Creation
+* Animation Assignment (Caution: Slow Animation Speed)
+
+https://www.cryptovoxels.com/spaces/67d81d73-74e4-43a8-88ee-13b13ca4cbb6/play
+
+
+
 # Basic new Feature Creation
 (Properties)
+
+https://wiki.cryptovoxels.com/Scripting/Examples/Move-rotate-scale-Feature
+
+```javascript
 let newFeature = parcel.createFeature('vox-model')
+// let newFeature = parcel.createFeature('cube')
 newFeature.position.set(-4,0,1) 
 newFeature.scale.set(0.75, 0.75, 0.75)  
 
-When a feature is created it has a scale and position of [0,0,0].
-Thus, remember to give it a position and a scale once created. To learn how to that, scroll down to Feature object -> Properties.
+// feature.set({scale:[2.5,2.5,2.5],position:[4.5,0.75,1.5]}) 
+
+```
+
+* When a feature is created it has a scale and position of [0,0,0].
+* Thus, remember to give it a position and a scale once created. To learn how to that, scroll down to Feature object -> Properties.
 
 (Method)
+```javascript
 feature.clone()
 feature.position.set(-3,0,2)  
+```
 
-(Features Types Supported):
+Features Types Supported: 
 
-'vox-model'
-'button'
-'image'
-'sign'
-'polytext'
-'richtext'
-'audio'
-'video'
-'youtube'
-'nft-image'
-'megavox'
-'text-input'
-'spawn-point'
+(Properties of various objects)
+https://wiki.cryptovoxels.com/en/Scripting/all-features-scripting-properties
 
-# Portal
+* 'vox-model'
+* 'button'
+* 'image'
+* ' sign'
+* 'richtext'
+* 'audio'
+* 'video'
+* 'youtube'
+* 'nft-image'
+* 'megavox'
+* 'text-input'
+* 'spawn-point'
+
+(Animation API: Multiple)
+```javascript
+let rocket = parcel.getFeatureById('rocketvox')
+
+let r1 = rocket.createAnimation('position')
+
+r1.setKeys([{
+  frame: 30, // standard is 30 fps (means it take 1 second)
+  value: rocket.position.add( new Vector3(0,10,0) )
+}])
+
+rocket.startAnimations( [r1] ) //Starts the animation
+```
+
+# Portal (If time permits)
 Womps
 
-# Public Assets
-
-If time permits, 
-
-# Collision 
-Elevator/ Push (Grouping Objects)
-  **Show Group Creation and Animation Assignment (Caution: Slow Animation Speed)
-https://www.cryptovoxels.com/spaces/67d81d73-74e4-43a8-88ee-13b13ca4cbb6/play
+https://wiki.cryptovoxels.com/en/Scripting/Animation-API
 
 ============
 # Parametric Sculpture
+```javascript
 let mm = parcel.getFeatureById('cube1');
 let mm4 = parcel.getFeatureById('cube3');
 
@@ -79,15 +109,20 @@ for (let i = 0; i < 10; i++) {
   
 };
 
+```
 
+===========
+# GUI
 
+https://wiki.cryptovoxels.com/Scripting/Examples/basic-gui-simple-example
 
+https://wiki.cryptovoxels.com/Scripting/Examples/basic-gui-advanced-example
 
 
 
 ==================
 # Slider (Generative Staircase Design)
-
+```javascript
 // Create Object with Stair id first
 let mm = parcel.getFeatureById('stair')
 let steps = 3
@@ -117,9 +152,6 @@ for (let i = 0; i < steps; i++) {
   
 })
 
-
-
-
 let nf = parcel.createFeature('cube');
 
 let idname = steps.toString()
@@ -128,11 +160,13 @@ nf.set({id:idname})
 console.log(nf.type)
 
 console.log(nf.id)
+```
 
 ==================
 # Vid Green (Pixel Rendering) [Advance Class]
-https://www.cryptovoxels.com/spaces/e9fdb582-8ce4-4a0c-8373-96f1a81ac813/play
 
+https://www.cryptovoxels.com/spaces/e9fdb582-8ce4-4a0c-8373-96f1a81ac813/play
+```javascript
 let m=0
 
 feature.on('start', e=>{
@@ -157,7 +191,7 @@ feature.on('keys', e=>{
     feature.screen[6336 + 65*m*3]=200 ;    
     feature.screen[12771 - 63*m*3]=200 ;    
       
-      //feature.scree[i]
+      // feature.scree[i]
   }
  
 })
@@ -169,9 +203,12 @@ function draw(){
  // } 
 
   }
+  
+  ```
 ==================
-// API Connection [Advance]
 
+# API Connection [Advance]
+```javascript
 feature.on('click', e=>{
   
   fetch('https://api.wheretheiss.at/v1/satellites')
@@ -180,12 +217,12 @@ feature.on('click', e=>{
     .then(() => { 
      console.log(text)  /* now you can use your library */ })
   
- 
-  
 })
-
+```
 ==================
 // Modify Player Position
+
+```javascript
 feature.on('click', e=>{
   console.log('Button Clicked')
   console.log('Player X coordinate')
@@ -233,7 +270,7 @@ feature.on('click', e=>{
    
 })
 
-
+```
 
 
 
