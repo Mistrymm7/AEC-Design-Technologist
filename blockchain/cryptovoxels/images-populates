@@ -1,0 +1,52 @@
+```javascript 
+// Button 1 (Generate)
+
+feature.on('click',e=>{
+
+let featureslist = parcel.getFeatures();
+  
+for (let i = 0; i < 5; i++) {
+  let imgFrame = parcel.createFeature('image') ;      
+    imgFrame.id = 'mmimage';
+  
+  imgFrame.set({
+          'url':"https://i.imgur.com/oKZ95XY.jpeg", 
+          scale:[2,2,2],
+          position:[1.5,5*i,1.5]
+          })  
+    } 
+  })
+  
+// Button 2 (Delete)
+
+feature.on('click', e=>{
+  
+  let features = parcel.getFeatures();
+
+  console.log(features)
+  
+  let mm2 = features[5];
+  console.log(mm2);
+  //mm2.remove();
+  
+let imageslist = parcel.getFeaturesByType('image');
+console.log(imageslist)
+console.log(imageslist.length);
+
+  for (let j=0; j<imageslist.length;j++ ){
+    imageslist[j].remove();
+  }
+
+  
+  // Not Working
+  // parcel.removeFeature('mmimage')
+  
+  //parcel.removeFeature(f)
+  
+  
+  ========
+  // Parcel Features level (Count before generation, Generate, Delete from old to new using parcel.getFeatures();
+  // Object Features level (Keep tracking of existing images and new images
+  // ID Features level
+  
+  ```
