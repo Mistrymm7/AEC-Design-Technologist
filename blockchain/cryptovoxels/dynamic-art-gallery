@@ -49,4 +49,23 @@ console.log(imageslist.length);
   // Object Features level (Keep tracking of existing images and new images
   // ID Features level
   
+   let abc = parcel.getFeatureById('global-state');
+  
+  let noofimginstr = abc.get('text')
+  console.log("State reading issue" +  abc )
+  let noofimginnum = parseInt(noofimginstr, 10);
+      
+   console.log(abc.get('text'))
+  console.log("No of iteration to del" +noofimginnum )
+  
+  for (let j=0; j<noofimginnum;j++ ){
+    
+    //concate
+    let idtodel = 'image' + j.toString()   
+    console.log('id to del ' + idtodel)     
+    let imgg = parcel. getFeatureById('idtodel');  
+    console.log("Feature " + imgg)  
+    imgg.remove();
+  }
+  
   ```
