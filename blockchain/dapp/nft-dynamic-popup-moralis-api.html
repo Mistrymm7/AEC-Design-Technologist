@@ -1,0 +1,112 @@
+<html>
+  <head>
+    <!-- Moralis SDK code -->
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+    <script src="https://unpkg.com/moralis/dist/moralis.js"></script>
+  </head>
+  <body>
+    <h1>NFT Collection Popup Based on Wallet Address</h1>
+    <form> <label for="walletadd"> Wallet Address for NFT Showcase: </label><input type="text" id="walletaddress" name="walletaddress"></form>
+    <button id="walletadd"> CollectionCall </button>
+  
+    <div id="content">
+        <h1>Image Canvas</h1>
+    </div>
+    
+    <script>
+      // connect to Moralis server
+      
+      // IMP. Enable CORS Chrome Plugin
+      
+      let addressinput;
+
+      const serverUrl = "Paste_Server_URL";
+      const appId = "Paste_App_Id";
+      Moralis.start({ serverUrl, appId });
+
+      let tokenlist = [];
+
+      
+
+      document.getElementById('walletadd').onclick = ()=>{
+        
+        var clear = document.getElementById('content');
+        clear.innerHTML = '';
+        // clear.removeChild(clear.firstChild); (removes one img element at a time)
+        //clear.remove(); Also removes parent node
+
+
+
+        console.log("Clicked");
+        addressinput = document.getElementById('walletaddress').value;
+        console.log("Address Input is " + addressinput);
+        // Sample Address Test : 0x65334efb0c2e228bdc21243b6d6598b8dcb3f410
+
+        async function getNFt(){
+        //const options = { chain: 'rinkeby', address: '0x8d29f3f3c3fefC40fAfb88b159AA5249e9C7a746' };
+        const options = { chain: 'eth', address: addressinput };
+        const rinkbeyNFTs = await Moralis.Web3API.account.getNFTs(options);
+        console.log('Promise Object')
+        console.log(rinkbeyNFTs); 
+
+        let nftarrary = rinkbeyNFTs.result;
+
+        //Mapping Approach
+        let nftdata = nftarrary.map(o => ({token:o.token_id, image:JSON.parse(o.metadata), tokenadd: o.token_address}))
+        console.log("mapped data (Id and image Metadata");
+        console.log(nftdata);
+        let imgurl = [];
+        
+        //to change limit
+        for (let i=0; i<nftdata.length;i++){ 
+           imgurl[i] = nftdata[i].image; 
+           
+            //let formatcheck = imgurl[i].image;
+           if (imgurl[i]===null) { continue; };
+
+           if (imgurl[i].image === undefined) {
+                console.log("Token Id no." + i + " is undefinded");
+            } 
+           else {
+                //console.log(typeof(nftdata[i].image))
+            console.log("Image URL " + i + " " + imgurl[i].image);
+ 
+            var img = new Image();
+            
+                if(imgurl[i].image.startsWith("ipfs")){
+                //img.src = "https://ipfs.moralis.io:2053/ipfs/"+(imgurl[i].image).split("ipfs://ipfs/");
+                
+                    let kk = (imgurl[i].image).split("ipfs://ipfs/");
+                    
+                    img.src="https://ipfs.moralis.io:2053/ipfs/"+(kk.toString()).substring(1);;
+                }
+                else{
+                    img.src = imgurl[i].image;
+                }
+            
+            //test img.src = 'https://cloud-01.isotile.com/basic/avatars/png/8680.png';
+            
+            img.width=250;
+
+            document.getElementById('content').appendChild(img);
+            }
+           
+        }
+        
+    }
+      getNFt(); 
+        
+      }
+
+/*         
+console.log("Opensea API")
+
+fetch('https://testnets-api.opensea.io/api/v1/assets?owner=0x8d29f3f3c3fefC40fAfb88b159AA5249e9C7a746&order_direction=desc&offset=0&limit=20', options)
+.then(response => response.json())
+.then(response => console.log(response))
+.catch(err => console.error(err));
+})
+*/
+    </script>
+  </body>
+</html>
