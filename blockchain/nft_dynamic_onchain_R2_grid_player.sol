@@ -27,6 +27,13 @@ contract NFTdynamicPW is ERC721Enumerable, Ownable {
   }
 
   // add public function about mintMoment info  
+  function mintMomentDatabase(uint256 id) public view returns(uint16 ,uint16[] memory, uint16[] memory,address[] memory){
+    
+    mintMomentInfo memory momentMetadata = details[id];
+
+    return (momentMetadata.count, momentMetadata.allUserTileIndices, momentMetadata.galleryUserIndices, momentMetadata.walletaddress);
+  }
+
 
   // public
   function mint(uint16 count, uint16[] memory allUserTileIndices, uint16[] memory galleryUserIndices, address[] memory walletaddress ) public payable {
@@ -129,7 +136,6 @@ contract NFTdynamicPW is ERC721Enumerable, Ownable {
 
 
 
-    // override rectangles on grid using input here
     return string(abi.encodePacked(
       'data:application/json;base64,',
       Base64.encode(bytes(abi.encodePacked(
