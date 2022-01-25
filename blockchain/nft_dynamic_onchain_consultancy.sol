@@ -35,15 +35,38 @@ contract NFTdynamicPW is ERC721Enumerable, Ownable {
     
     //Add Max limit (Old + Current) check
 
-    require(msg.sender == ownerOf(id));
+    require(msg.sender == ownerOf(id),'Minter doesnt own that NFT');
     console.log("Owner of id", ownerOf(id));
 
-    console.log("Redeem initial", ownerOf(id));
+    console.log("Redeem initial", redeemablehrs[id-1]);
     //TokenID Info
-    redeemablehrs[id] = redeemablehrs[id] + _additional; 
-    console.log("Owner of id", ownerOf(id));
+    redeemablehrs[id-1] = redeemablehrs[id-1] + _additional; 
+    console.log("Redeem Final", redeemablehrs[id-1]);
 
     require(msg.value >= consultancyrate*(_additional));
+
+     }
+
+  //Node Client watch redeemed hrs
+  event ClaimedHrs(address indexed _address, uint256 indexed _tokenidref, uint _noofhrs);
+
+  function redeemConsultancyHrs(uint256 _burn, uint256 id) public payable {
+    
+    //Add Max limit (Old + Current) check
+
+    require(msg.sender == ownerOf(id),'Minter doesnt own that NFT');
+    console.log("Owner of id", ownerOf(id));
+
+    console.log("Redeem initial", redeemablehrs[id-1]);
+
+    //TokenID Info
+    require (redeemablehrs[id-1]>= _burn);
+    redeemablehrs[id-1] = redeemablehrs[id-1] - _burn; 
+    console.log("Redeem Final", redeemablehrs[id-1]);
+
+    emit ClaimedHrs(msg.sender,id,_burn);
+
+    // Future Add Refund Functionality
 
      }
 
@@ -76,7 +99,7 @@ contract NFTdynamicPW is ERC721Enumerable, Ownable {
       '<text dominant-baseline="middle" text-anchor="middle" font-size="20" y="30%" x="50%"  fill="white">',
       '<tspan x="50%" dy="4.2em" font-size="30"> ArchiDAO </tspan>  <tspan x="50%" dy="2.2em"> AEC Metaverse and Blockchain Consultany </tspan> <tspan x="50%" dy="2.2em"> Hours Left: ',
        // Change
-       redeemablehrs[queryID].toString(),
+       redeemablehrs[queryID-1].toString(),
       '</tspan>  </text>',
       '</svg>'
       )));
