@@ -1,3 +1,12 @@
+//Chrome Extension : 
+// 1. Browserify : https://chrome.google.com/webstore/detail/requirify/gajpkncnknlljkhblhllcnnfjpbcmebm (add scripts direclty using require statement in console)
+// 2. CORS : Eliminate CORS Error
+
+//Add script cdn
+var script = document.createElement('script');
+script.src = "https://code.jquery.com/jquery-3.4.1.min.js";
+document.getElementsByTagName('head')[0].appendChild(script);
+
 
 //Create text DOM from console/script tag
 var img = new Image();
