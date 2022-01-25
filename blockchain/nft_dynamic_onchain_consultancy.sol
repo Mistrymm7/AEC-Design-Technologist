@@ -31,11 +31,23 @@ contract NFTdynamicPW is ERC721Enumerable, Ownable {
       return (consultancyrate*1000/(1 ether));
  }
 
-  function updateConsultancyRate(uint256 _newrateinFinney) public onlyOwner {
+  function buyMoreConsultancyHrs(uint256 _additional, uint256 id) public payable {
     
-    consultancyrate = _newrateinFinney*1e15;
-    console.log("State Update Rate (FinneyWei) is", (consultancyrate*1000)/(1 ether));
-  }
+    //Add Max limit (Old + Current) check
+
+    require(msg.sender == ownerOf(id));
+    console.log("Owner of id", ownerOf(id));
+
+    console.log("Redeem initial", ownerOf(id));
+    //TokenID Info
+    redeemablehrs[id] = redeemablehrs[id] + _additional; 
+    console.log("Owner of id", ownerOf(id));
+
+    require(msg.value >= consultancyrate*(_additional));
+
+     }
+
+
 
   // public
   function mint(uint hrsbuy) public payable {
@@ -62,7 +74,7 @@ contract NFTdynamicPW is ERC721Enumerable, Ownable {
       '<svg width="500" height="500" xmlns="http://www.w3.org/2000/svg">',
       '<rect height="500" width="500" fill="black"/>',
       '<text dominant-baseline="middle" text-anchor="middle" font-size="20" y="30%" x="50%"  fill="white">',
-      '<tspan x="50%" dy="1.2em" font-size="40"> ArchiDAO </tspan>  <tspan x="50%" dy="1.2em"> AEC Metaverse and Blockchain Consultany </tspan> <tspan x="50%" dy="1.2em"> Hours Left: ',
+      '<tspan x="50%" dy="4.2em" font-size="30"> ArchiDAO </tspan>  <tspan x="50%" dy="2.2em"> AEC Metaverse and Blockchain Consultany </tspan> <tspan x="50%" dy="2.2em"> Hours Left: ',
        // Change
        redeemablehrs[queryID].toString(),
       '</tspan>  </text>',
