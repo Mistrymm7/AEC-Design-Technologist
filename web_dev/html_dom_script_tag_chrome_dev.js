@@ -1,5 +1,6 @@
 //Chrome Extension : 
 // 1. Browserify : https://chrome.google.com/webstore/detail/requirify/gajpkncnknlljkhblhllcnnfjpbcmebm (add scripts direclty using require statement in console)
+// https://stackoverflow.com/questions/15954721/can-i-add-a-resource-using-chrome-dev-tools
 // 2. CORS : Eliminate CORS Error
 
 //Add script cdn
