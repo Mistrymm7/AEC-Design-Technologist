@@ -40,3 +40,33 @@ statelog.addComponent(
   })
 ); 
 log("Mapped Data", statelog);
+
+==============
+  let button = new Entity("button");
+let trans = button.addComponent(
+  new Transform({
+    position: new Vector3(10, 0, 10),
+    scale: new Vector3(1, 1, 1),
+    rotation: Quaternion.Zero(),
+  })
+);
+button.addComponent(new CylinderShape());
+engine.addEntity(button);
+button.addComponent(
+  new OnPointerDown((e) => {
+    log("OnPointerDown");
+    
+    let len = pfs.floorModules[0].pixels.length;
+
+    for (let i=0; i<len; i++) {
+      let entity = pfs.floorModules[0].pixels[i];
+
+      let material = entity.getComponent(Material);
+      log("Material of pixel unit ", i, "is", material.albedoColor);
+    }
+    
+    
+
+  })
+);
+log("BUTTON", button);
