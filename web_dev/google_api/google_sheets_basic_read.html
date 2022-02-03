@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <title>Hello World.</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" href="wave.png">
+    <meta name="description" content="A simple hello world HTML example.">
+    <meta name="slingcode-tags" content="demo,template">
+    <script src="https://cdn.rawgit.com/Keyang/node-csvtojson/d41f44aa/browser/csvtojson.min.js"></script>
+
+    <style>
+     
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <h1>Lets go MM!</h1>
+      <p id="content_response">Populate</p>
+    </div>
+     </body>
+  <script>
+    const url = "https://docs.google.com/spreadsheets/d/1FD6ZNtCwz5BnkDwBP9r1CH4AnpmcY1LfMX4zVEbrfgk/export?format=csv"
+    const content = document.querySelector("#content_response");
+    content.innerHTML = "<p>Loading...</p>";
+    fetch(url).then(result=> result.text()).then(function(csvtext){
+     return csv().fromString(csvtext);
+      }).then(function(csv){
+     //content.innerHTML ="<code>" + JSON.stringify(csv) + "</code>";
+     console.log(csv);
+      	content.innerHTML = ""; // Remove Loading Tag
+     csv.forEach(function(row){
+        content.innerHTML += "<h2> Wallet Address : " + row["Wallet Address"] + "</h2>";
+       	content.innerHTML += "<p> Checked Parcel : " + row["Check on"] + "</p>";
+       	content.innerHTML += "<p> Left Parcel : " + row["Leave"] + "</p>";
+       	content.innerHTML += "<p> User Interaction : " + row["Interaction"] + "</p>";
+
+      });
+    });
+    
+  </script>
+</html>
