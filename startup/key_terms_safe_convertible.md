@@ -19,20 +19,13 @@
 
 # YC Safe (Notes below)
 
-* Raise money to survive for 18 months (series A), preseed (3-6 months)
-* Simple Formula = no. of hires * 15k $ per month * 18 months
-
 Tools
 * https://angelcalc.com/
 * https://www.aumni.fund/resources/enhanced-model-term-sheet?utm_source=NVCA&utm_medium=model-doc-homepage
 * https://www.ycombinator.com/documents (Safe Templates)
 * V.IMP : Safe User Guide : https://www.ycombinator.com/assets/ycdc/Primer%20for%20post-money%20safe%20v1.1-2af8129e12effd9638eeab383b7309142c8f415e5cdb0bc210d573f779177a1c.pdf
 
-Distribution
-• 10% Seed 
-• 20-30% Series A
 
- ![image](https://user-images.githubusercontent.com/7644450/165025177-4534cba9-f0f4-4d80-a7e0-3e879917d941.png)
 
 # Additional Notes
 
