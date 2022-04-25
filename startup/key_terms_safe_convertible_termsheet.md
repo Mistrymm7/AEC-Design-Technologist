@@ -18,6 +18,3 @@ Tools
 
 
 # Additional Notes
-
-# Evaluation 
- ![image](https://user-images.githubusercontent.com/7644450/165025453-c107d2b2-df9b-4c19-9ee8-3223fe991a6d.png)
