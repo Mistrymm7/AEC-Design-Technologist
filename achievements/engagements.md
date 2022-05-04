@@ -40,6 +40,9 @@ https://www.linkedin.com/in/mayurmistry7/
 
 * Authors: Ricardo Cesar Rodrigues, Fábio A Alzate-Martinez, Daniel Escobar, Mayur Mistry
 
+[IASS, 2020] : Parametric Design of Long Span Asymmetrical Cable Domes
+
+* Authors: Mayur Mistry, Prof. Sudarshan Krishnan
 
 ===========
 ### Life Changing / Turning Point Events
