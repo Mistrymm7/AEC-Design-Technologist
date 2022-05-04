@@ -1,3 +1,8 @@
+*Mayur Mistry is a Structural Engineer turned Architect turned Web3 Developer. He works at Perkins & Will as Digital Innovation Technologist. His research work on has been published in Acadia and tutored AI and Metaverse workshops in various conferences. He runs a Youtube channel called Engineering ArchiTECHure focused on AEC Technologies. He is Core Group Member of ArchiDAO composed of Web3 first Architecture Design Technologists developing solutions and experiences that transcend physical-digital boundaries integrating blockchain and Metaverse.*
+https://www.linkedin.com/in/mayurmistry7/
+
+![Mayur Mistry_original_5F4A5256](https://user-images.githubusercontent.com/7644450/166610979-4d6b7382-a051-4b56-bafe-cef1b2cf6a16.jpg)
+
 # Hackathon
 
 | Project Name | Event |  When | Info | Repo | Hack Demo |
@@ -30,6 +35,7 @@
 | Intro to AI for Architectural Design Explorations | Digital Futures | June 2021 | I was teaching AI in the same conference where I learnt about AI a year ago. **Workshop Playlist** : https://www.youtube.com/watch?v=or6cilqeKzo&list=PLWu3lkFWPBHnyn_jVtl2aTL8CQFyrMa_k |
 | Using AI for Creativity | Team Shunya, IIT Bombay | Sept. 2020 | Workshop Link : https://www.youtube.com/watch?v=Jqm9atOXB_k&list=PLmc5rYq_qgXTXclSELKOfXh6UtRgnx07d |
 
+# ResearchWork  
 
 
 
