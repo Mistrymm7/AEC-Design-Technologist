@@ -1,14 +1,16 @@
 # Hackathon
 
-| Project Name | Event |  When | Info | Repo |
-| --- | --- | --- | --- | --- |
-| ManageRL | TT Core Studio Internal | Jan, 2021 | Reinforcement Learning in AEC Resource Allocation for Project Planning | https://github.com/enmerk4r/ManageRL |
-| SmokingGan | AEC TECH | Nov, 2020 | GAN and Depth Map ML Model to Rhino-Grasshopper Workflow  | https://github.com/enmerk4r/SmokingGAN |
+| Project Name | Event |  When | Info | Repo | Hack Demo |
+| --- | --- | --- | --- | --- | --- | 
+| ManageRL | TT Core Studio Internal | Jan, 2021 | Reinforcement Learning in AEC Resource Allocation for Project Planning | https://github.com/enmerk4r/ManageRL | https://www.youtube.com/watch?v=0HvgXHyGPcM&t=3s | 
+| SmokingGan | AEC TECH | Nov, 2020 | GAN and Depth Map ML Model to Rhino-Grasshopper Workflow  | https://github.com/enmerk4r/SmokingGAN | https://www.youtube.com/watch?v=O3lCP6BBAY8 |
 
 # Speaking
 
-| Topic | Type | When | Additional Info |
+| Topic | When | Type | Additional Info |
 | --- | --- | --- | --- |
+| The future of Architecture, AI and the Architect (WSA Festival, Cardiff University) | Sept, 2021 | Panel Discussion | https://www.youtube.com/watch?v=NDn90w9Tfis |
+| Multimodal Creative AI-Architecture : Hitchhiker's Guide to Artificial Intelligence | June, 2021 | Presentation | https://www.youtube.com/watch?v=N1JbnJO6t0U&t=41s |
 | ML, AI, GD for the future of AEC | Mar, 2021 | Podcast | https://www.a-ves.mx/podcast/episode/c2bdef8a/the-essentials-of-technology-for-aec |
 
 # Workshop
