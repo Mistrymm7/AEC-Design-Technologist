@@ -44,6 +44,11 @@ https://www.linkedin.com/in/mayurmistry7/
 
 * Authors: Mayur Mistry, Prof. Sudarshan Krishnan
 
+# Solar Decathalon
+
+* Solar Decathlon US [2018-2021] : Adapthaus (Project Manager, Team U of Illinois): (4th Position)
+* Solar Decathlon China [2015-2018] : Solarise (Structural Design Head, Team IIT Bombay): Awarded IITB Tech Person of the Year  
+
 ===========
 ### Life Changing / Turning Point Events
 
