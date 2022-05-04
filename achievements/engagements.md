@@ -36,7 +36,9 @@ https://www.linkedin.com/in/mayurmistry7/
 | Using AI for Creativity | Team Shunya, IIT Bombay | Sept. 2020 | Workshop Link : https://www.youtube.com/watch?v=Jqm9atOXB_k&list=PLmc5rYq_qgXTXclSELKOfXh6UtRgnx07d |
 
 # ResearchWork  
+[Acadia, 2021] : Rendering Conceptual Design Ideas with Artificial Intelligence: A Combinatory Framework of Text, Images and Sketches, 
 
+* Authors: Ricardo Cesar Rodrigues, Fábio A Alzate-Martinez, Daniel Escobar, Mayur Mistry
 
 
 ===========
