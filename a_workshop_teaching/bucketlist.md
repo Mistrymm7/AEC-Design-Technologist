@@ -7,6 +7,8 @@
 7. Unreal Multiplayer Networking and Deployment : (1-2 hrs)
 8. File format (Gltf and USDZ) : (2-3 hrs)
 9. React-three-fiber Crash Course : (1-2 hrs)
+10. Webaverse : Open source metaverse : (2-3 hrs)
+11. Spline + React three fiber Workflow : (2-3 hrs)
 
 
 Mini Tutorials
