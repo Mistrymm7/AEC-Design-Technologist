@@ -8,8 +8,13 @@
 * Make a BP out of Asset, Create a Widget, and refer to BP Asset Class, Set material
 ![image](https://user-images.githubusercontent.com/7644450/178295438-2dadfcb5-ca05-43d0-a574-1a0bfd042938.png)
 
-# Change Material Parameter on Hover
-* Material Create Static Param
+# Dynamic Assets
+* Change/ Swap Assets 
+* Change Material Assigned to a Static Mesh
+![image](https://user-images.githubusercontent.com/7644450/178307890-0770dd44-d42e-4beb-a2d8-412ed7eea1ed.png)
+
+### Change Material Parameter on Hover
+* Change Color of a particular Material,  Create Static Param
  ![image](https://user-images.githubusercontent.com/7644450/178304550-ecc4bc0f-2c53-4a37-ae12-d5f2aa4171fa.png)
 * Asset BP
 ![image](https://user-images.githubusercontent.com/7644450/178304337-4bed506a-704d-4c7d-b0ba-17adfc392b19.png)
