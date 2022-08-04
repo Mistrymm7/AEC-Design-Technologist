@@ -1,0 +1,340 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Three.js Boilerplate</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+
+		<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r79/three.min.js"></script> -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/stats.js/r16/Stats.min.js"></script>
+
+		<script src="http://rawgithub.com/dataarts/dat.gui/master/build/dat.gui.min.js"></script>
+		<script src="http://threejs.org/examples/js/controls/TrackballControls.js"></script>
+        <!-- <script src="https://threejs.org/examples/js/controls/OrbitControls.js"></script> -->
+        
+
+		<style>
+		body {
+			overflow	: hidden;
+			padding		: 0;
+			margin		: 0;
+
+			color		: #222;
+			background-color: rgb(46, 214, 31);
+			font-family	: arial;
+			font-size	: 100%;
+		}
+		</style>
+	</head>
+<body>
+	<!-- three.js container -->
+    	<div id="container"></div>
+	<!-- info on screen display -->
+
+	<script type="module">
+
+        import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.121.1/examples/jsm/controls/OrbitControls.js';
+        import { DragControls } from ' https://cdn.jsdelivr.net/npm/three@0.121.1/examples/jsm/controls/DragControls.js';
+        import { GLTFLoader } from 'https://cdn.jsdelivr.net/npm/three@0.121.1/examples/jsm/loaders/GLTFLoader.js';
+        import  'https://cdn.jsdelivr.net/npm/three@0.121.1/build/three.js';
+		
+        var stats, scene, renderer, composer;
+		var camera, camControls;
+        var dragcontrol;
+        var mesh;
+
+		var Variables = function(){
+			this.speed = 1.0
+		}
+		var variables = new Variables();
+
+		var gui = new dat.GUI();
+		gui.add(variables, 'speed', 0, 2)
+
+
+		if( !init() )	animate();
+
+		// init the scene
+		function init(){
+
+			renderer = new THREE.WebGLRenderer({
+				antialias		: true,	// to get smoother output
+			});
+			renderer.setClearColor( 0xbbbbbb );
+
+			renderer.setSize( window.innerWidth*0.8, window.innerHeight*0.8 );
+			document.getElementById('container').appendChild(renderer.domElement);
+
+			// add Stats.js - https://github.com/mrdoob/stats.js
+			stats = new Stats();
+			stats.domElement.style.position	= 'absolute';
+			stats.domElement.style.bottom	= '0px';
+			document.body.appendChild( stats.domElement );
+
+			// create a scene
+			scene = new THREE.Scene();
+
+			// put a camera in the scene
+			camera	= new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 10000 );
+			camera.position.set(0, 0, 5);
+			scene.add(camera);
+
+			// create a camera contol
+			camControls	= new OrbitControls( camera,  renderer.domElement  )
+            
+            
+
+			// Objects
+			var geometry	= new THREE.TorusGeometry( 1, 0.42, 16, 16 );
+			var material	= new THREE.MeshNormalMaterial();
+			mesh	= new THREE.Mesh( geometry, material );
+			//scene.add( mesh );
+		}
+
+
+
+        var loader = new THREE.TextureLoader();
+        //allow cross origin loading
+        loader.crossOrigin = '';
+
+        
+        // The textures to use
+        var arr = [
+        'https://s3-us-west-2.amazonaws.com/s.cdpn.io/259155/THREE_gates.jpg',
+        'https://s3-us-west-2.amazonaws.com/s.cdpn.io/259155/THREE_crate1.jpg',
+        'https://s3-us-west-2.amazonaws.com/s.cdpn.io/259155/THREE_crate2.jpg'
+        ];
+        var textureToShow = 0;
+
+        console.log("Texture loaded")
+
+        // Instantiate the material we will be using
+        var material = new THREE.MeshBasicMaterial();
+        // Instantiate a geometry to use
+        var geometry = new THREE.BoxGeometry( 1, 1, 1);
+        // Instatiate the mesh with the geometry and material
+        var cube = new THREE.Mesh( geometry, material );
+        cube.position.y = 0.5;
+
+                // Then load the texture
+        loader.load(arr[textureToShow], function(tex) {
+        // Once the texture has loaded
+        // Asign it to the material
+        material.map = tex;
+        // Update the next texture to show
+        textureToShow++;
+        // Add the mesh into the scene
+        scene.add( cube );
+
+         
+
+
+        });
+
+        const light = new THREE.PointLight( 0xff0000, 5, 1000 );
+        light.position.set( 50, 50, 50 );
+        scene.add( light );
+
+        
+
+         //Drag Cube
+        // dragcontrol = new DragControls( [mesh], camera, renderer.domElement );
+
+        // dragcontrol.addEventListener( 'dragstart', function ( event ) {
+        //     console.log( 'dragstart' );
+        // } );
+
+        // dragcontrol.addEventListener( 'dragend', function ( event ) {
+        //     console.log( 'dragend' );
+        // } );
+
+        // Instantiate a loader
+        const gltfloader = new GLTFLoader();
+        gltfloader.crossOrigin = '';
+
+        let model = new THREE.Object3D();
+
+        // Optional: Provide a DRACOLoader instance to decode compressed mesh data
+        // const dracoLoader = new DRACOLoader();
+        // dracoLoader.setDecoderPath( '/examples/js/libs/draco/' );
+        // gltfloader.setDRACOLoader( dracoLoader );
+
+        // Load a glTF resource
+        gltfloader.load(
+            // resource URL
+            'Flamingo.glb',
+            // called when the resource is loaded
+            function ( gltf ) {
+                gltf.scene.scale.set(0.01, 0.01, 0.01); 
+                //model = gltf.scene.children[0];   
+                model = gltf.scene;
+
+                //model.scale = (0.1, 0.1, 0.1);
+
+                console.log(gltf.scene.children[0]);
+
+                //scene.add(model);
+                //scene.add( gltf.scene );
+
+                gltf.animations; // Array<THREE.AnimationClip>
+                gltf.scene; // THREE.Group
+                gltf.scenes; // Array<THREE.Group>
+                gltf.cameras; // Array<THREE.Camera>
+                gltf.asset; // Object
+
+            },
+            // called while loading is progressing
+            function ( xhr ) {
+
+                console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+
+            },
+            // called when loading has errors
+            function ( error ) {
+
+                console.log( 'An error happened' );
+
+            }
+        );
+
+      
+
+        var canvas = document.getElementsByTagName('canvas')[0];
+
+        //Change texture from array on click
+        // canvas.addEventListener('click', function() {
+        //     loader.load(arr[textureToShow], function(tex) {
+        //     // Once the texture has loaded
+        //     // Asign it to the material
+        //     material.map = tex;
+        //     // Update the next texture to show
+        //     textureToShow++;
+        //     if(textureToShow >= arr.length) textureToShow = 0;
+        //     }
+        //     )});
+
+        // TO DO TO DO 
+        //Add web3 auth to save scene to IPFS
+        // NFT auth to change parcel (wallet integration, upload parcel to specific location based on nft)
+        // Save it in metaverse
+        //Drag and Drop within bounds
+
+        canvas.addEventListener('dragenter', e=>{
+            e.preventDefault();
+            console.log("dragenter");
+            //dropzone.classList.add('active');
+        });
+
+        canvas.addEventListener('dragleave', e=>{
+            e.preventDefault();
+            console.log("dragleave");
+           // dropzone.classList.remove('active');
+        });
+
+        canvas.addEventListener('dragover', e=>{
+            console.log("dragover");
+            e.preventDefault();
+        });
+
+        canvas.addEventListener('drop', e=>{
+            e.preventDefault();
+            //canvas.classList.remove('active');
+            //console.log(e);
+            //console.log(e.dataTransfer);
+            console.log(e.dataTransfer.files[0]);
+            console.log("File dropped");
+
+            const file = e.dataTransfer.files[0];
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+
+         
+            reader.addEventListener('loadend',()=>{
+               
+               
+
+                gltfloader.load( reader.result, function ( gltf ) {
+                    gltf.scene.scale.set(0.01, 0.01, 0.01); 
+                    
+                    model = gltf.scene;
+
+                    scene.add(model);
+                    
+                    gltf.animations; // Array<THREE.AnimationClip>
+                    gltf.scene; // THREE.Group
+                    gltf.scenes; // Array<THREE.Group>
+                    gltf.cameras; // Array<THREE.Camera>
+                    gltf.asset; // Object
+
+                },
+                
+                function ( xhr ) {
+
+                    console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+
+                },
+            
+                function ( error ) {
+
+                    console.log( 'Model Drag error happened' );
+
+                }
+            );
+
+                // Add texture to cube
+
+                // loader.load(reader.result, function(tex) {
+                //     material.map = tex;
+                //     console.log("texture loaded");
+                // })
+                // console.log("File image loaded");
+
+                // Add image to canvas
+
+                // const img = document.createElement('img');
+                //img.src = reader.result;
+                //canvas.append(img);
+            })
+
+            
+        })
+
+
+
+
+
+
+
+
+		// animation loop
+		function animate() {
+			requestAnimationFrame( animate );
+
+			// do the render
+			render();
+
+			// update stats
+			stats.update();
+		}
+
+		// render the scene
+		function render() {
+			// variable which is increase by Math.PI every seconds - usefull for animation
+			//var PIseconds	= Date.now() * Math.PI;
+
+			// update camera controls
+			camControls.update();
+
+			// animation of all objects
+			// scene.traverse(function(object3d, i){
+			// 	if( object3d instanceof THREE.Mesh === false )	return
+			// 	object3d.rotation.y = variables.speed * PIseconds*0.0003 * (i % 2 ? 1 : -1);
+			// 	object3d.rotation.x = variables.speed * PIseconds*0.0002 * (i % 2 ? 1 : -1);
+			// })
+
+			// actually render the scene
+			renderer.render( scene, camera );
+		}
+	</script>
+</body>
+</html>
