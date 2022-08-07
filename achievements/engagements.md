@@ -64,4 +64,15 @@ https://www.linkedin.com/in/mayurmistry7/
 * Team Shunya (2017) : Technical Growth
 * Aakar (2016) : Social Skills Growth
 
+===========
+
+July to add
+* Metaplay China Workshop
+* NFT Gallery, AR Workshop
+* CityDAO AMA
+* ArchiDAO Mozilla Workshop
+* CityDAO Spatial Workshoo
+* CityDAO Podcast 
+* 
+=============
 
