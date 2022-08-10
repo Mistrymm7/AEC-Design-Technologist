@@ -1,0 +1,519 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Three.js Boilerplate</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+
+		<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r79/three.min.js"></script> -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/stats.js/r16/Stats.min.js"></script>
+
+		<script src="http://rawgithub.com/dataarts/dat.gui/master/build/dat.gui.min.js"></script>
+
+        <!-- <script src="lib.cjs"></script> 
+		 -->
+        
+
+		<style>
+		body {
+			overflow	: hidden;
+			padding		: 0;
+			margin		: 0;
+
+			color		: #222;
+			background-color: rgb(46, 214, 31);
+			font-family	: arial;
+			font-size	: 100%;
+		}
+		</style>
+	</head>
+<body>
+    <div id="info">
+        "W" translate | "E" rotate | "R" scale 
+        "Q" toggle world/local space |  "Shift" snap to grid
+        "Esc" reset current transform<br />
+        
+    </div>
+    <br>
+    <form>
+        <label for="ipfsinput">IPFS Link</label>
+        <input type="text" id="ipfsinput" name="ipfsinput" size="75" placeholder="Enter IPFS CID here">    
+        
+    </form>
+    <button id="ipfsdata">Render2D</button>
+    <button id="ipfsdata2">Render3D</button>
+    
+
+
+
+
+	<!-- three.js container -->
+    	<div id="container"></div>
+	<!-- info on screen display -->
+
+	<script type="module">
+
+        import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.121.1/examples/jsm/controls/OrbitControls.js';
+        import { DragControls } from ' https://cdn.jsdelivr.net/npm/three@0.121.1/examples/jsm/controls/DragControls.js';
+        import { TransformControls } from ' https://cdn.jsdelivr.net/npm/three@0.121.1/examples/jsm/controls/TransformControls.js';
+        import { GLTFLoader } from 'https://cdn.jsdelivr.net/npm/three@0.121.1/examples/jsm/loaders/GLTFLoader.js';
+        import  'https://cdn.jsdelivr.net/npm/three@0.121.1/build/three.js';
+
+      // import { NFTStorage, File } from 'https://cdn.jsdelivr.net/npm/nft.storage@7.0.0/dist/bundle.esm.min.js'
+		
+        var stats, scene, renderer, composer;
+		var camera, camControls;
+        var dragcontrol, transfromcontrol;
+        var mesh;
+        var raycaster, mouse;
+
+        var rollOverGeo, rollOverMaterial, rollOverMesh;
+
+        var ipfscdn;
+
+		var Variables = function(){
+			this.speed = 1.0
+		}
+		var variables = new Variables();
+        var intersects, finalposition;
+        var posX, posY, posZ;
+
+		var gui = new dat.GUI();
+		gui.add(variables, 'speed', 0, 2)
+
+     
+
+		if( !init() )	animate();
+
+        
+
+		// init the scene
+		function init(){
+
+			renderer = new THREE.WebGLRenderer({
+				antialias		: true,	// to get smoother output
+			});
+			renderer.setClearColor( 0xbbbbbb );
+
+            //Change canvas size
+			renderer.setSize( window.innerWidth, window.innerHeight );
+			document.getElementById('container').appendChild(renderer.domElement);
+
+			// add Stats.js - https://github.com/mrdoob/stats.js
+			stats = new Stats();
+			stats.domElement.style.position	= 'absolute';
+			stats.domElement.style.bottom	= '0px';
+			document.body.appendChild( stats.domElement );
+
+			// create a scene
+			scene = new THREE.Scene();
+
+			// put a camera in the scene
+			camera	= new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 10000 );
+			camera.position.set(12, 12, 12);
+			scene.add(camera);
+
+            //raycasting
+            raycaster = new THREE.Raycaster();
+            mouse = new THREE.Vector2();
+
+           
+
+
+             // Marker that moves for snapping
+
+             rollOverGeo = new THREE.BoxGeometry( 1, 1, 1 );
+             rollOverMaterial = new THREE.MeshBasicMaterial( { color: 0xff0000, opacity: 0.5, transparent: true } );
+            rollOverMesh = new THREE.Mesh( rollOverGeo, rollOverMaterial );
+
+
+			// create a camera contol
+			camControls	= new OrbitControls( camera,  renderer.domElement  )
+
+            //Modify 3D Objects
+            transfromcontrol = new TransformControls( camera, renderer.domElement );
+            transfromcontrol.addEventListener( 'change', render );
+
+            transfromcontrol.addEventListener( 'dragging-changed', function ( event ) {
+
+                camControls.enabled = ! event.value;
+
+                } );
+
+            //Add Shortcuts to Controls
+            window.addEventListener( 'keydown', function ( event ) {
+
+                switch ( event.keyCode ) {
+
+                    case 81: // Q
+                    transfromcontrol.setSpace( control.space === 'local' ? 'world' : 'local' );
+                        break;
+
+                    case 16: // Shift
+                    transfromcontrol.setTranslationSnap( 100 );
+                    transfromcontrol.setRotationSnap( THREE.MathUtils.degToRad( 15 ) );
+                    transfromcontrol.setScaleSnap( 0.25 );
+                        break;
+
+                    case 87: // W
+                    transfromcontrol.setMode( 'translate' );eeeeee
+                        break;
+
+                    case 69: // E
+                    transfromcontrol.setMode( 'rotate' );
+                        break;
+
+                    case 82: // R
+                        control.setMode( 'scale' );
+                        break;
+
+                    case 27: // Esc
+                    transfromcontrol.reset();
+                        break;
+                }
+
+                } );
+		}
+
+
+        //ipfs cid to http gateway : https://ipfs.io/ipfs/bafkreiek5w2crs5ycxp75jsq7z2374bs5isa6agmvuxwjxepmkqmlyydcm
+
+        //Render 2d material
+
+        document.getElementById('ipfsdata').onclick=()=>{
+            console.log("clicked"); 
+
+            ipfscdn = document.getElementById('ipfsinput').value;
+            console.log(ipfscdn)
+
+            //var map = new THREE.TextureLoader().load( "DuckCM.png" );
+           var map = new THREE.TextureLoader().load( "https://ipfs.io/ipfs/bafkreiek5w2crs5ycxp75jsq7z2374bs5isa6agmvuxwjxepmkqmlyydcm");
+
+           //link works : https://bafybeiaobxmvw3umdxae4wmnae3mfkcbphuua6anbtkvaom7bplluk74f4.ipfs.nftstorage.link/1.png
+
+            //var map = new THREE.TextureLoader().load( "https://bafkreiek5w2crs5ycxp75jsq7z2374bs5isa6agmvuxwjxepmkqmlyydcm.ipfs.nftstorage.link" );
+    
+            var material2 = new THREE.SpriteMaterial( { map: map, color: 0xffffff } );
+            var sprite = new THREE.Sprite( material2);
+            scene.add( sprite );
+            sprite.scale.set(5,5,1)
+            //sprite.rotation.set(5,5,1)
+            //sprite.rotation.x = Math.PI / 2;
+            sprite.rotation.set =( 0,0,0)
+            
+            //sprite.scale.set(imageWidth,imageHeight,1);
+
+        }
+
+        //Render 3d material
+
+        document.getElementById('ipfsdata2').onclick=()=>{
+            console.log("clicked"); 
+
+            ipfscdn = document.getElementById('ipfsinput').value;
+            console.log(ipfscdn)
+
+           // const file = e.dataTransfer.files[0];
+
+            //const file = "https://ipfs.io/ipfs/bafkreie6vpvvqwd6jygrdvpchmyke23t4s4on2gih4wdnm6fyp7ajxhrt4"
+            const file = "https://ipfs.io/ipfs/"+ipfscdn;
+            
+            //Github 3d model
+           //const file = "https://cors-anywhere.herokuapp.com/https://github.com/mrdoob/three.js/blob/dev/examples/models/gltf/Flamingo.glb"
+
+            //const file ="Flamingo.glb"
+            //const reader = new FileReader();
+            //reader.readAsDataURL(file);
+
+            const gltfloader2 = new GLTFLoader();
+            
+         
+           // reader.addEventListener('loadend',()=>{
+               
+            gltfloader2.setCrossOrigin("");
+
+                gltfloader2.load( file, function ( gltf ) {
+                    
+                    //Custom Scaling
+                    gltf.scene.scale.set(0.01, 0.01, 0.01); 
+
+                    //Custom Transformation
+                   // gltf.scene.position.set(1, 1, 1); 
+                    
+
+                    //gltf.scene.position.set(intersects[0].point.x,intersects[0].point.y+1,intersects[0].point.z );
+                   // gltf.scene.position.set(posX,posY+1,posZ );
+
+                   gltf.scene.position.set(Math.floor(Math.random() * 5),Math.floor(Math.random() * 5)+1,Math.floor(Math.random() * 5));
+                    
+                    model = gltf.scene;
+
+                    scene.add(model);
+
+                    
+                    
+     
+                    gltf.animations; // Array<THREE.AnimationClip>
+                    gltf.scene; // THREE.Group
+                    gltf.scenes; // Array<THREE.Group>
+                    gltf.cameras; // Array<THREE.Camera>
+                    gltf.asset; // Object
+
+                },
+                
+                function ( xhr ) {
+
+                    console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+
+                },
+            
+                function ( error ) {
+
+                    console.log( 'Model Load error happened' );
+
+                }
+                )
+            //})
+
+          
+
+
+
+        }
+
+         // Instantiate a loader
+         const gltfloader = new GLTFLoader();
+        gltfloader.crossOrigin = '';
+
+       var loader = new THREE.TextureLoader();
+        //allow cross origin loading
+        loader.crossOrigin = '';
+   
+        // The textures to use
+        var arr = [
+        'https://s3-us-west-2.amazonaws.com/s.cdpn.io/259155/THREE_gates.jpg', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/259155/THREE_crate1.jpg','https://s3-us-west-2.amazonaws.com/s.cdpn.io/259155/THREE_crate2.jpg'];
+        var textureToShow = 0;
+
+        console.log("Texture loaded")
+
+        // Instantiate the material we will be using
+        var material = new THREE.MeshBasicMaterial();
+        // Instantiate a geometry to use
+        var geometry = new THREE.BoxGeometry( 1, 1, 1);
+        // Instatiate the mesh with the geometry and material
+        var cube = new THREE.Mesh( geometry, material );
+        cube.position.y = 0.5;
+        cube.position.x = 2.5;
+        cube.position.z = 2.5;
+
+                // Then load the texture
+        loader.load(arr[textureToShow], function(tex) {
+        // Once the texture has loaded
+        // Asign it to the material
+        material.map = tex;
+        // Update the next texture to show
+        textureToShow++;
+        // Add the mesh into the scene
+        scene.add( cube );
+
+        //Add model transfrom controls
+        transfromcontrol.attach(cube);
+        scene.add(transfromcontrol);
+        });
+
+        const light = new THREE.PointLight( 0xff0000, 5, 1000 );
+        light.position.set( 50, 50, 50 );
+        scene.add( light );
+
+        //Add grid
+        scene.add( new THREE.GridHelper( 10, 10, "black ", "white" ) );
+
+        //Add plane
+        const baseplane = new THREE.PlaneGeometry( 100, 100 );
+        baseplane.rotateX( - Math.PI / 2 );
+
+        const plane = new THREE.Mesh( baseplane, new THREE.MeshBasicMaterial(  { color:"grey", visible: true } ) );
+        scene.add( plane );
+
+        
+
+        let model = new THREE.Object3D();
+
+        var canvas = document.getElementsByTagName('canvas')[0];
+
+
+
+        // TO DO TO DO 
+        // IPFS 3d model parser, Add web3 auth to save scene to IPFS, array to update ipfs array link
+        // NFT auth to change parcel (wallet integration, upload parcel to specific location based on nft)
+        // Save it in metaverse
+        //Drag and Drop within bounds
+
+        canvas.addEventListener('dragenter', e=>{
+
+            scene.add( rollOverMesh );
+
+            e.preventDefault();
+            console.log("dragenter");
+            //dropzone.classList.add('active');
+        });
+
+        canvas.addEventListener('dragleave', e=>{
+
+            
+            e.preventDefault();
+            console.log("dragleave");
+           // dropzone.classList.remove('active');
+        });
+
+        canvas.addEventListener('click',e=>{
+            console.log("clicked");
+            e.preventDefault();
+
+            
+        })
+
+        canvas.addEventListener('dragover', e=>{
+            console.log("dragover");
+            e.preventDefault();
+              //DEBUG THIS TO MOVE SNAPPING MARKER
+              mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+            //console.log("Mouse X", mouse.x)
+            mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+
+            raycaster.setFromCamera( mouse, camera );
+
+            intersects = raycaster.intersectObject( plane );
+
+            //console.log(intersects[0].point);
+            
+
+            var div = 1;
+
+             posX = Math.round(intersects[0].point.x / div) * div + 0.5;
+             posY = Math.round(intersects[0].point.y / div) * div ;
+             posZ = Math.round(intersects[0].point.z / div) * div+ 0.5;
+
+             console.log(posX,posY,posZ)
+            //rollOverMesh.position.copy(posX,posY,posZ);
+            rollOverMesh.position.set(posX,posY,posZ);
+
+     
+       
+        });
+
+
+
+        canvas.addEventListener('drop', e=>{
+            scene.remove ( rollOverMesh );
+
+            e.preventDefault();
+            //canvas.classList.remove('active');
+            //console.log(e);
+            //console.log(e.dataTransfer);
+            console.log(e.dataTransfer.files[0]);
+            console.log("File dropped");
+
+            const file = e.dataTransfer.files[0];
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+
+         
+            reader.addEventListener('loadend',()=>{
+               
+               
+
+                gltfloader.load( reader.result, function ( gltf ) {
+                    
+                    //Custom Scaling
+                    gltf.scene.scale.set(0.01, 0.01, 0.01); 
+
+                    //Custom Transformation
+                   // gltf.scene.position.set(1, 1, 1); 
+                    console.log("Position final",intersects[0].point.x )
+
+                    gltf.scene.position.set(intersects[0].point.x,intersects[0].point.y+1,intersects[0].point.z );
+                    gltf.scene.position.set(posX,posY+1,posZ );
+                    
+                    model = gltf.scene;
+
+                    scene.add(model);
+
+                    //Add model transfrom controls
+                    transfromcontrol.attach(model);
+                    scene.add(transfromcontrol);
+     
+                    gltf.animations; // Array<THREE.AnimationClip>
+                    gltf.scene; // THREE.Group
+                    gltf.scenes; // Array<THREE.Group>
+                    gltf.cameras; // Array<THREE.Camera>
+                    gltf.asset; // Object
+
+                },
+                
+                function ( xhr ) {
+
+                    console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+
+                },
+            
+                function ( error ) {
+
+                    console.log( 'Model Drag error happened' );
+
+                }
+            );
+
+                // Add texture to cube
+
+                // loader.load(reader.result, function(tex) {
+                //     material.map = tex;
+                //     console.log("texture loaded");
+                // })
+                // console.log("File image loaded");
+
+                // Add image to canvas
+
+                // const img = document.createElement('img');
+                //img.src = reader.result;
+                //canvas.append(img);
+            })
+
+            
+        })
+
+
+
+
+		// animation loop
+		function animate() {
+			requestAnimationFrame( animate );
+
+			// do the render
+			render();
+
+			// update stats
+			stats.update();
+		}
+
+		// render the scene
+		function render() {
+			// variable which is increase by Math.PI every seconds - usefull for animation
+			//var PIseconds	= Date.now() * Math.PI;
+
+			// update camera controls
+			camControls.update();
+
+			// animation of all objects
+			// scene.traverse(function(object3d, i){
+			// 	if( object3d instanceof THREE.Mesh === false )	return
+			// 	object3d.rotation.y = variables.speed * PIseconds*0.0003 * (i % 2 ? 1 : -1);
+			// 	object3d.rotation.x = variables.speed * PIseconds*0.0002 * (i % 2 ? 1 : -1);
+			// })
+
+			// actually render the scene
+			renderer.render( scene, camera );
+		}
+	</script>
+</body>
+</html>
