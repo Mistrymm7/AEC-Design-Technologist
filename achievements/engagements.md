@@ -71,8 +71,9 @@ July to add
 * NFT Gallery, AR Workshop
 * CityDAO AMA
 * ArchiDAO Mozilla Workshop
-* CityDAO Spatial Workshoo
-* CityDAO Podcast 
+* CityDAO Spatial Workshop : 
+* CityDAO Podcast about Fractionalized NFT : https://open.spotify.com/episode/4PcCXWJn7TwEjvQSBv49l6?si=dc8724c505784999
+* CityDAO Podcast about Archidao : https://open.spotify.com/episode/2TTVTnCuWptlTYOrZHdGs7?si=f221804bff864523
 * 
 =============
 
