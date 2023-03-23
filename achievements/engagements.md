@@ -66,7 +66,7 @@ https://www.linkedin.com/in/mayurmistry7/
 
 ===========
 
-July to add
+To add
 * Metaplay China Workshop
 * NFT Gallery, AR Workshop
 * CityDAO AMA
@@ -74,6 +74,8 @@ July to add
 * CityDAO Spatial Workshop : 
 * CityDAO Podcast about Fractionalized NFT : https://open.spotify.com/episode/4PcCXWJn7TwEjvQSBv49l6?si=dc8724c505784999
 * CityDAO Podcast about Archidao : https://open.spotify.com/episode/2TTVTnCuWptlTYOrZHdGs7?si=f221804bff864523
-* 
+* (Mar 23)Digital Futures AI Tutorial: 3dguru Demo
 =============
+Mention
+* (Mar 23) Mention Top 100 Construction Data Leaders : https://www.cdomagazine.tech/cdo_magazine/nominations-and-lists/2023/top_construction_data_leaders/
 
